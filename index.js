@@ -24,8 +24,8 @@ const feedManager = (url)=>{
 }
 
 app.post("/github", (req, res, next)=>{
-
-    feedManager(req.body.url)
+    res.send("We are here")
+    // feedManager(req.body.url)
 
 })
 
