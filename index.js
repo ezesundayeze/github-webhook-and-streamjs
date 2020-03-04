@@ -19,14 +19,20 @@ app.post("/get-token/", (req, res, next)=>{
     next()
 })
 
-const feedManager = (url)=>{
-
+const feedManager = async (url, data)=>{
+    const user = client.feed('user', data.user);
+    await user.addActivity({
+        actor: data.user,
+        verb: 'add',
+        object: 'picture:10',
+        foreign_id: 'picture:10',
+        message: 'Beautiful bird!'
+    });
 }
 
 app.post("/github", (req, res, next)=>{
-    res.send("We are here")
-    // feedManager(req.body.url)
-
+    // feedManager(req.body)
+    res.send(JSON.stringify(req.body))
 })
 
 
