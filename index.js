@@ -14,25 +14,27 @@ const client =  stream.connect(
   );
 
 app.post("/get-token/", (req, res, next)=>{
+    console.log(req.body)
     const token = client.createUserToken(req.body.username)
     res.json({token})
     next()
 })
 
-const feedManager = async (url, data)=>{
-    const user = client.feed('user', data.user);
-    await user.addActivity({
-        actor: data.user,
+app.post("/github", async (req, res, next)=>{
+    // feedManager(req.body)
+    const { user, created_at, state } = req.body.pull_request
+    const feedUser = client.feed('user', user.login);
+    await feedUser.addActivity({
+        actor: user.login,
         verb: 'add',
         object: 'picture:10',
         foreign_id: 'picture:10',
-        message: 'Beautiful bird!'
+        created_at,
+        state,
+        message: `${user.login} Created a Pull Request`
     });
-}
 
-app.post("/github", (req, res, next)=>{
-    // feedManager(req.body)
-    res.send(JSON.stringify(req.body))
+    res.send(JSON.stringify(req.body.pull_request))
 })
 
 
