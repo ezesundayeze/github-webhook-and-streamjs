@@ -7,7 +7,7 @@ const client =  stream.connect(
   );
 
 
-  
+
 const getToken = (req, res, next)=>{
     const token = client.createUserToken(req.body.username)
     res.json({token})
@@ -18,7 +18,7 @@ const getToken = (req, res, next)=>{
 const githubHook = async (req, res, next)=>{
     // feedManager(req.body)
     const { user, created_at, state } = req.body.pull_request
-    const feedUser = client.feed('user', user.login);
+    const feedUser = client.feed('notification', user.login);
     await feedUser.addActivity({
         actor: user.login,
         verb: 'add',

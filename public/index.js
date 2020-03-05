@@ -7,7 +7,7 @@
     const client = stream.connect('wf946y4ahq5j', token, "66027");
     console.log(client)
 
-    const notificationFeed = client.feed('user', username);
+    const notificationFeed = client.feed('notification', username);
     
     const callback = data => {
         console.log(data);
