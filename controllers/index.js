@@ -17,8 +17,8 @@ const getToken = (req, res, next)=>{
 
 const githubHook = async (req, res, next)=>{
     // feedManager(req.body)
-    const { user, created_at, state } = req.body.pull_request
-    const feedUser = client.feed('notification', user.login, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkI…plIn0.NK-A9N8-syHcQ8k3evFU9AVikW2mUs9BKha4Lasxa9E");
+    const { user, created_at, state, html_url } = req.body.pull_request
+    const feedUser = client.feed('notification', "eze");
     await feedUser.addActivity({
         actor: user.login,
         verb: 'add',
@@ -26,12 +26,13 @@ const githubHook = async (req, res, next)=>{
         foreign_id: 'picture:10',
         created_at,
         state,
+        html_url,
         message: `${user.login} Created a Pull Request`
     });
 
     const results = await feedUser.get({ limit: 10 });
 
-    res.send(JSON.stringify(results))
+    res.json(results)
 }
 
 module.exports = {
