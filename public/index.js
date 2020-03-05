@@ -15,9 +15,8 @@ const  init = (url, username)=>{
 }
 
 const feedManager = async (token, username)=>{
-    const client = stream.connect('wf946y4ahq5j', token, "66027");        
+    const client = stream.connect('wuf946y45ahq5j', token, "66027");        
     const notificationFeed = client.feed('notification', username);
-    const activityFeed = document.getElementById("activity-feed")
     const results = await notificationFeed.get({ limit: 10 });
 
     const feedTemplate = (date,  message, link, state)=>{
@@ -62,7 +61,7 @@ const feedManager = async (token, username)=>{
     notificationFeed.subscribe(callback).then(successCallback, failCallback);
 }
 
-init("https://web-hook-feed.herokuapp.com/get-token", "peter")
+init("http://localhost:3002/get-token", "peter")
 
     
         
