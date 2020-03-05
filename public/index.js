@@ -62,7 +62,7 @@ const feedManager = async (token, username)=>{
     notificationFeed.subscribe(callback).then(successCallback, failCallback);
 }
 
-init("http://localhost:3002/get-token", "eze")
+init("https://web-hook-feed.herokuapp.com/get-token", "peter")
 
     
         
