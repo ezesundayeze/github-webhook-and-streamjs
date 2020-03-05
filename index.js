@@ -34,7 +34,9 @@ app.post("/github", async (req, res, next)=>{
         message: `${user.login} Created a Pull Request`
     });
 
-    res.send(JSON.stringify(req.body.pull_request))
+    const results = await feedUser.get({ limit: 10 });
+
+    res.send(JSON.stringify(results))
 })
 
 
