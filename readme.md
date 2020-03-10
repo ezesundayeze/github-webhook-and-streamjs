@@ -1,22 +1,3 @@
-### Simple API to generate token for users
+### Github Webhook and Stream Feeds
 
-### How to use the api
-
-Run 
-```bash 
-npm install
-
-```
-
-### Create a .env file and add your api key and secret like so:
-
-```bash
-API_KEY=*********
-API_SECRET=**************
-```
-
-Run 
-```bash 
-node index.js
-
-```
+Creating a simple feed app
